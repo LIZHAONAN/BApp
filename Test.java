@@ -21,8 +21,9 @@ public class Test {
         @Override
 
         public void handle(HttpExchange t) throws IOException {
-            String response = ;
-            t.sendResponseHeaders(200, response.length());
+            String response = ReadFile.read("test.html");
+            byte[] bt = response.getBytes("UTF-8");
+            t.sendResponseHeaders(200, bt.length);
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
             os.close();
